@@ -1,299 +1,99 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guilherme Henrique Pereira - Portfolio</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <canvas id="canvas"></canvas>  
-    <nav>
-    <div class="nav-container">
-        <div class="nav-logo">Guilherme Henrique Pereira</div>
-        <div class="hamburger-menu">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
+    <link rel="stylesheet" type="text/css" href="styles.css" media="screen" />
+    <title>Jokenpô - Pedra, Papel e Tesoura</title>
+  </head>
+  <body>
+    <div id="principal">
+      <h1 id="titulo">Pedra, Papel e Tesoura</h1>
+
+      <div id="placar">
+        <div id="jogador">
+          <h2 id="jogador-nome">&nbsp;</h2>
+          <span id="jogador-pontos">0</span>
+          <ul id="jogador-escolha" role="group" aria-label="Escolhas do jogador">
+            <li>
+              <button aria-label="Escolher Pedra" id="jogador-escolha-1" class="escolha-btn">
+                <img src="img/pedra.png" alt="Pedra">
+              </button>
+            </li>
+            <li>
+              <button aria-label="Escolher Papel" id="jogador-escolha-2" class="escolha-btn">
+                <img src="img/papel.png" alt="Papel">
+              </button>
+            </li>
+            <li>
+              <button aria-label="Escolher Tesoura" id="jogador-escolha-3" class="escolha-btn">
+                <img src="img/tesoura.png" alt="Tesoura">
+              </button>
+            </li>
+          </ul>
         </div>
-        <div class="nav-links">
-            <a href="#sobre-mim">Sobre Mim</a>
-            <a href="#experiencia">Experiência</a>
-            <a href="#projetos">Projetos</a>
-            <a href="#certificados">Certificados</a>
-            <a href="#contato">Contato</a>
+
+        <div id="versus">
+          <span class="vs-text">VS</span>
         </div>
+
+        <div id="computador">
+          <h2 id="computador-nome">CPU</h2>
+          <span id="computador-pontos">0</span>
+
+          <ul id="computador-escolha" role="group" aria-label="Escolhas do computador">
+            <li>
+              <div id="computador-escolha-1" class="escolha-cpu">
+                <img src="img/pedra.png" alt="Pedra">
+              </div>
+            </li>
+            <li>
+              <div id="computador-escolha-2" class="escolha-cpu">
+                <img src="img/papel.png" alt="Papel">
+              </div>
+            </li>
+            <li>
+              <div id="computador-escolha-3" class="escolha-cpu">
+                <img src="img/tesoura.png" alt="Tesoura">
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="status-jogo">
+        <div id="mensagem" role="status" aria-live="polite">Mensagens</div>
+        <div id="placar-info">
+          <p>Primeiro a chegar em <span id="max-pontos">5</span> pontos vence!</p>
+        </div>
+      </div>
+
+      <div id="controles">
+        <button id="reiniciar" style="display: none;" aria-label="Reiniciar jogo">
+          🔄 Jogar Novamente
+        </button>
+        <button id="toggle-historico" style="display: none;">
+          📊 Ver Histórico
+        </button>
+      </div>
+
+      <div id="historico" style="display: none;" role="region" aria-label="Histórico de jogadas">
+        <h3>Histórico de Jogadas</h3>
+        <div id="estatisticas">
+          <p>Vitórias: <span id="vitorias-jogador">0</span> | 
+             Derrotas: <span id="vitorias-computador">0</span> | 
+             Empates: <span id="empates">0</span></p>
+        </div>
+        <ul id="lista-historico"></ul>
+        <button id="limpar-historico">Limpar Histórico</button>
+      </div>
+
+      <footer>
+        <p>Use as teclas 1, 2, 3 para jogar rapidamente!</p>
+      </footer>
+
+      <script type="text/javascript" src="script.js"></script>
     </div>
-</nav>
-
-    <div class="page-container">
-        <!-- Seção Sobre Mim -->
-        <section id="sobre-mim" class="about-section">
-            <div class="profile-image-container">
-                <img src="./data/media/profile/ghpxd.jpg" alt="Foto de Perfil" class="profile-image">
-            </div>
-            
-            <div class="about-content">
-                <h1 class="main-title">Guilherme Henrique Pereira</h1>
-                <p class="description">
-                    Analista de sistemas com 3 anos de experiência no desenvolvimento, validação e teste de softwares. Apto a atuar com diferentes linguagens de programação, garantindo a qualidade de funcionamento dos produtos e o cumprimento dos requisitos de funcionalidade.
-                </p>
-                <div class="skills-section">
-                    <h2 class="skills-title">Habilidades</h2>
-                    <div class="skills-tags">
-                        <span class="skill-tag python">Python</span>
-                        <span class="skill-tag pyspark">PySpark</span>
-                        <span class="skill-tag selenium">Selenium</span>
-                        <span class="skill-tag powerbi">Power BI</span>
-                        <span class="skill-tag aws">AWS EC2</span>
-                        <span class="skill-tag java">Java</span>
-                        <span class="skill-tag spring-boot">Spring Boot</span>
-                        <span class="skill-tag docker">Docker</span>
-                        <span class="skill-tag oraclesql">OracleSQL</span>
-                        <span class="skill-tag javascript">JavaScript</span>
-                        <span class="skill-tag sap">SAP 4HANA</span>
-                        <span class="skill-tag gitlab">GIT</span>
-                        <span class="skill-tag html">SCRUM</span>
-                        
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção Experiência Profissional -->
-        <section id="experiencia" class="experience-section">
-            <h2 class="section-title">Experiência Profissional</h2>
-            
-            <div class="experience-carousel-container">
-                <div class="experience-carousel-wrapper">
-                    <div id="experience-carousel" class="experience-carousel">
-                        <!-- Mantendo seus cards exatamente como estavam -->
-                        <div class="experience-card current-job">
-                            <h3 class="card-title">Data Science</h3>
-                            <p class="card-company">Volvo Group</p>
-                            <div class="card-description">
-                                <p>
-                                    • Desenvolvimento e atualização de dashboards para monitoramento de indicadores ambientais, integrando processos de ETL com ferramentas de BI.
-                                    • Automação de coleta e tratamento de dados para relatórios, utilizando Python e ferramentas de automação.
-                                    • Implementação de soluções para monitoramento de conformidade ambiental, garantindo aderência a requisitos legais e regulatórios.
-                                    • Apoio à digitalização de processos com foco em inovação e sustentabilidade, promovendo eficiência e padronização das informações.
-                                    • Suporte técnico à análise de dados, para decisões estratégicas por meio de insights estruturados.
-                                </p>
-                            </div>
-                            <div class="tech-list">
-                                <span class="tech-icon python" title="Python"><i class="fab fa-python"></i></span>
-                                <span class="tech-icon selenium" title="Selenium"><i class="fas fa-robot"></i></span>
-                                <span class="tech-icon pandas" title="Pandas"><i class="fas fa-table"></i></span>
-                                <span class="tech-icon powerbi" title="Power BI"><i class="fas fa-chart-bar"></i></span>
-                                <span class="tech-icon power-automate" title="Power Automate"><i class="fas fa-exchange-alt"></i></span>
-                                <span class="tech-icon mysql" title="MySQL"><i class="fas fa-database"></i></span>
-                                <span class="tech-icon numpy" title="Numpy"><i class="fas fa-square-root-alt"></i></span>
-                                <span class="tech-icon pdfplumber" title="pdfplumber"><i class="fas fa-file-pdf"></i></span>
-                                <span class="tech-icon pyinstaller" title="PyInstaller"><i class="fas fa-box-open"></i></span>
-                                <span class="tech-icon pyspark" title="PySpark"><i class="fas fa-fire"></i></span>
-                            </div>
-                            <div class="card-date">Mar 2025 - Presente</div>
-                        </div>
-
-                        <div class="experience-card">
-                            <h3 class="card-title">Analista de Melhorias e Automações JR</h3>
-                            <p class="card-company">Votorantim</p>
-                            <div class="card-description">
-                                <p>
-                                    • Desenvolver e manter scripts e macros para a criação e gestão de folhas de pedidos.
-                                    • Extrair e analisar relatórios do SAP e CAP de forma automatizada.
-                                    • Manipulação de dados SQL
-                                    • Desenvolver e manter dashboards e indicadores da área nos sistemas de BI com ETL.
-                                    • Automações Web Scraping com Python e Selenium no Service Now
-                                    • Criação e manutenção de automações em Power Automate
-                                    • Testes Unitarios e integração
-                                </p>
-                            </div>
-                            <div class="tech-list">
-                                <span class="tech-icon python" title="Python"><i class="fab fa-python"></i></span>
-                                <span class="tech-icon selenium" title="Selenium"><i class="fas fa-robot"></i></span>
-                                <span class="tech-icon pandas" title="Pandas"><i class="fas fa-table"></i></span>
-                                <span class="tech-icon vba" title="VBA"><i class="fas fa-file-code"></i></span>
-                                <span class="tech-icon powerbi" title="Power BI"><i class="fas fa-chart-bar"></i></span>
-                                <span class="tech-icon power-automate" title="Power Automate"><i class="fas fa-exchange-alt"></i></span>
-                                <span class="tech-icon mysql" title="MySQL"><i class="fas fa-database"></i></span>
-                                <span class="tech-icon sap" title="SAP"><i class="fas fa-cogs"></i></span>
-                            </div>
-                            <div class="card-date">Jul 2024 - Mar 2025</div>
-                        </div>
-
-                        <div class="experience-card">
-                            <h3 class="card-title">Desenvolvedor Java - Estagiário</h3>
-                            <p class="card-company">Telefonica Brasil S/A (VIVO)</p>
-                            <div class="card-description">
-                                <p>
-                                    • Desenvolvimento e manutenção de microsserviços com Java Spring Boot, aplicando arquitetura hexagonal e integração de APIs RESTful.
-                                    • Participação em squads ágeis (Scrum/Kanban) com uso de ferramentas Atlassian (Jira/Confluence).
-                                    • Criação de interfaces com React e automação de pipelines CI/CD via Jenkins.
-                                    • Integração de sistemas com Kafka e containerização de aplicações com Docker.
-                                    • Automação de tarefas e análise de dados com Python/Pandas.
-                                    • Versionamento com Git e testes de APIs com Postman.
-                                    • Certificação Yellow Belt, com projeto de automação que gerou 80% de ganho de eficiência em processos de banco de dados.
-                                </p>
-                            </div>
-                            <div class="tech-list">
-                                <span class="tech-icon java" title="Java"><i class="fab fa-java"></i></span>
-                                <span class="tech-icon spring-boot" title="Spring Boot"><i class="fas fa-leaf"></i></span>
-                                <span class="tech-icon oraclesql" title="OracleSQL"><i class="fas fa-database"></i></span>
-                                <span class="tech-icon confluence" title="Confluence"><i class="fab fa-confluence"></i></span>
-                                <span class="tech-icon jira" title="Jira"><i class="fab fa-jira"></i></span>
-                                <span class="tech-icon gitlab" title="GitLab"><i class="fab fa-gitlab"></i></span>
-                                <span class="tech-icon docker" title="Docker"><i class="fab fa-docker"></i></span>
-                                <span class="tech-icon kafka" title="Kafka"><i class="fas fa-stream"></i></span>
-                                <span class="tech-icon react" title="React"><i class="fab fa-react"></i></span>
-                                <span class="tech-icon python" title="Python"><i class="fab fa-python"></i></span>
-                                <span class="tech-icon pandas" title="Pandas"><i class="fas fa-table"></i></span>
-                            </div>
-                            <div class="card-date">Abr 2022 - Dez 2023</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Setas de navegação -->
-                <div class="experience-carousel-controls">
-                    <button class="experience-carousel-btn prev-btn" onclick="moveExperienceCarousel(-1)">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="experience-carousel-btn next-btn" onclick="moveExperienceCarousel(1)">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção Projetos -->
-        <section id="projetos" class="projects-section">
-            <h2 class="section-title">Projetos</h2>
-            
-            <div class="projects-filter">
-                <button onclick="filterProjects('all')" class="filter-btn active">Todos</button>
-                <button onclick="filterProjects('Python')" class="filter-btn">Python</button>
-                <button onclick="filterProjects('JavaScript')" class="filter-btn">JavaScript</button>
-                <button onclick="filterProjects('Java')" class="filter-btn">Java</button>
-            </div>
-
-            <div class="carousel-container">
-                <div class="carousel-wrapper">
-                    <div id="project-carousel" class="projects-carousel">
-                        <!-- Os projetos serão inseridos aqui dinamicamente -->
-                    </div>
-                </div>
-                <div class="carousel-controls">
-                    <button class="carousel-btn prev-btn" onclick="moveCarousel(-1)">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="carousel-btn next-btn" onclick="moveCarousel(1)">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Modal para Projetos -->
-        <div id="projectModal" class="project-modal">
-            <div class="project-modal-content">
-                <span class="project-close">&times;</span>
-                <div class="project-modal-header">
-                    <img id="projectModalImage" src="" alt="">
-                    <div class="project-modal-info">
-                        <h2 id="projectModalTitle"></h2>
-                        <div id="projectModalTech" class="project-modal-tech"></div>
-                    </div>
-                </div>
-                <div class="project-modal-buttons">
-                    <a id="projectRepoButton" href="#" target="_blank" class="project-btn repo-btn">
-                        <i class="fab fa-github"></i> Repositório
-                    </a>
-                    <button id="projectReadmeButton" class="project-btn readme-btn">
-                        <i class="fas fa-file-alt"></i> Documentação
-                    </button>
-                </div>
-                <div id="projectReadmeContent" class="project-readme-content" style="display: none;">
-                    <div class="readme-header">
-                        <h3>Documentação do Projeto</h3>
-                        <button id="closeReadmeButton" class="close-readme-btn">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                    <div id="readmeText" class="readme-text"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal for Full-Screen Image Viewer -->
-        <div id="certificateModal" class="modal">
-            <span class="close">&times;</span>
-            <img class="modal-content" id="modalImage">
-            <div id="caption"></div>
-        </div>
-
-        <!-- Seção Certificados -->
-        <section id="certificados" class="certificates-section">
-            <h2 class="section-title">Certificados</h2>
-            
-            <div class="certificates-filter">
-                <button onclick="filterCertificates('all')" class="filter-btn active">Todos</button>
-                <button onclick="filterCertificates('full')" class="filter-btn">Fullstack</button>
-                <button onclick="filterCertificates('back')" class="filter-btn">Back-end</button>
-                <button onclick="filterCertificates('front')" class="filter-btn">Front-end</button>
-                <button onclick="filterCertificates('dados')" class="filter-btn">Dados</button>
-                <button onclick="filterCertificates('diversos')" class="filter-btn">Diversos</button>
-            </div>
-
-            <div class="certificates-carousel-container">
-                <div class="certificates-carousel-wrapper">
-                    <div id="certificates-carousel" class="certificates-carousel">
-                        <!-- Os certificados serão inseridos aqui dinamicamente -->
-                    </div>
-                </div>
-                <div class="certificates-carousel-controls">
-                    <button class="certificates-carousel-btn prev-btn" onclick="moveCertificatesCarousel(-1)">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="certificates-carousel-btn next-btn" onclick="moveCertificatesCarousel(1)">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Modal para Certificados (mantendo o zoom atual) -->
-        <div id="certificateModal" class="modal">
-            <span class="close">&times;</span>
-            <img class="modal-content" id="modalImage">
-            <div id="caption"></div>
-        </div>
-
-
-        <!-- Seção Contato -->
-        <footer id="contato" class="contact-section">
-            <div class="card">
-                <div class="left">
-                  <img src="https://uiverse.io/astronaut.png" alt="Astronaut" class="image" />
-                </div>
-                <div class="right">
-                  <div class="heading">Contato</div>
-                  <div class="icons">
-                    <a href="https://linkedin.com/in/ghpxd" target="_blank" class="linkedin">
-                      <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://github.com/ghpxd" target="_blank" class="github">
-                      <i class="fab fa-github"></i>
-                    </a>
-                    <a href="mailto:ghp17@outlook.com" class="email">
-                      <i class="fas fa-envelope"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>                            
-        </footer>
-    </div>
-    <script src="script.js"></script>
-</body>
+  </body>
 </html>
